@@ -1,0 +1,73 @@
+---
+import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css'
+const pageTitle= "About me";
+const identity={
+    firstName:"Elmer",
+    country:"bolivia",
+    occupation:"technical writer",
+    hobbies:["fotografo","observador de aves","basquetball"]
+};
+const skills=["HTML","CSS","JavaScript","React","Astro","VueJS"];
+
+const happy=true;
+const finished=false;
+const goal=3;
+
+const skillColor="navy";
+const fontWeight="bold";
+const textCase="upperCase";
+
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <style define:vars={{skillColor, fontWeight, textCase}}>
+        h1{
+            color: purple;
+            text-transform: var(--textCase );
+            font-size: 4rem;
+        }
+        .skill{
+            color: green;
+            color: var(--skillColor);
+            font-weight: var(--fontWeight);
+        }
+    </style>
+</head>
+<body>
+    <Header/>
+    <h1>Sobre mi</h1>
+    <h1>{pageTitle}</h1>
+    <h2>... ¡y mi nuevo sitio Astro</h2>
+    <p>Estoy trabajando en el tutorial introductorio de Astro. Esta es la segunda página de mi sitio web, ¡y es la primera que he construido yo mismo!</p>
+    <p>Este sitio se irá actualizando a medida que vaya completando más partes del tutorial, ¡así que no dejes de visitarlo para ver cómo va mi viaje!</p>
+
+    <p>Here are a few facts about me:</p>
+    <ul>
+        <li>My nmae is {identity.firstName}.</li>
+        <li>I live in {identity.country} and I work as a {identity.occupation}</li>
+        {identity.hobbies.length>=2 &&
+        <li>two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[2]}</li>
+        }
+    </ul>
+    <p>my skills are:</p>
+    <ul>
+        {skills.map((skill)=> <li>{skill}</li> )}
+    </ul>
+
+    {happy && <p>I am happy to be learning Astro!</p> }
+    {finished && <p>I finished this tutorial!</p> }
+    {goal ===3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>  }
+
+    <p>Mis habilidades son:</p>
+    <ul>
+        {skills.map((skill)=><li class="skill">{skill}</li> )}
+    </ul>
+    <Footer/>
+</body>
+</html>
