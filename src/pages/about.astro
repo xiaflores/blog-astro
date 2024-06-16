@@ -1,8 +1,6 @@
+
 ---
-import Header from '../components/Header.astro';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css'
+import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle= "About me";
 const identity={
     firstName:"Elmer",
@@ -15,32 +13,12 @@ const skills=["HTML","CSS","JavaScript","React","Astro","VueJS"];
 const happy=true;
 const finished=false;
 const goal=3;
-
 const skillColor="navy";
 const fontWeight="bold";
 const textCase="upperCase";
 
 ---
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{pageTitle}</title>
-    <style define:vars={{skillColor, fontWeight, textCase}}>
-        h1{
-            color: purple;
-            text-transform: var(--textCase );
-            font-size: 4rem;
-        }
-        .skill{
-            color: green;
-            color: var(--skillColor);
-            font-weight: var(--fontWeight);
-        }
-    </style>
-</head>
-<body>
-    <Header/>
+<BaseLayout pageTitle={pageTitle}>
     <h1>Sobre mi</h1>
     <h1>{pageTitle}</h1>
     <h2>... ¡y mi nuevo sitio Astro</h2>
@@ -65,9 +43,19 @@ const textCase="upperCase";
     {goal ===3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>  }
 
     <p>Mis habilidades son:</p>
-    <ul>
-        {skills.map((skill)=><li class="skill">{skill}</li> )}
-    </ul>
-    <Footer/>
-</body>
-</html>
+    <div>
+        {skills.map((skill)=><div class="skill">{skill}</div> )}
+    </div>
+</BaseLayout>
+<style define:vars={{skillColor, fontWeight, textCase}}>
+    h1{
+        color: purple;
+        text-transform: var(--textCase );
+        font-size: 4rem;
+    }
+    .skill{
+        color: green;
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+    }
+</style>
